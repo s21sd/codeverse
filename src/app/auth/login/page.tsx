@@ -1,6 +1,6 @@
 "use client"
 import React from 'react'
-import '../../../Components/auth.css'
+import '../../../components/auth.css'
 import { useRouter } from 'next/navigation'
 const page = () => {
     const router = useRouter();
