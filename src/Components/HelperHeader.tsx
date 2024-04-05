@@ -28,9 +28,10 @@ const HelperHeader = () => {
                     </SelectTrigger>
                     <SelectContent>
                         <SelectGroup>
-                            <SelectItem value="html">HTML</SelectItem>
-                            <SelectItem value="css">CSS</SelectItem>
-                            <SelectItem value="javascript">JavaScript</SelectItem>
+                            <SelectItem value="c">C</SelectItem>
+                            <SelectItem value="cpp">C++</SelectItem>
+                            <SelectItem value="Java">Java</SelectItem>
+                            <SelectItem value="Java">Python</SelectItem>                          
 
                         </SelectGroup>
                     </SelectContent>
