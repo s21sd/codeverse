@@ -2,3 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    --tw-bg-opacity: 1;
+    background-color: rgb(229 231 235 / var(--tw-bg-opacity));
+
+}
