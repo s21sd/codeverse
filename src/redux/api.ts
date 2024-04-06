@@ -18,7 +18,6 @@ export const api = createApi({
 
     endpoints: (builder) => ({
 
-
         // Login Api 
         login: builder.mutation<UserInfoType, loginCredentialType>({
             query: (body) => ({
