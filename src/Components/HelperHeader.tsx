@@ -31,7 +31,7 @@ const HelperHeader = () => {
                             <SelectItem value="c">C</SelectItem>
                             <SelectItem value="cpp">C++</SelectItem>
                             <SelectItem value="Java">Java</SelectItem>
-                            <SelectItem value="Java">Python</SelectItem>                          
+                            <SelectItem value="python">Python</SelectItem>
 
                         </SelectGroup>
                     </SelectContent>
