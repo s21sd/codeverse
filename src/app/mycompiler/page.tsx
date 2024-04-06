@@ -29,8 +29,20 @@ const page = () => {
             <ResizablePanel defaultSize={50}>
                 <ResizablePanelGroup direction="vertical">
                     <ResizablePanel defaultSize={25}>
-                        <div className="flex h-full items-center justify-center p-6">
-                            <span className="font-semibold">Two</span>
+                        <div className="flex h-full p-6 ">
+                            <div className='w-[100%]'>
+                                <span className=" text-gray-800 font-semibold text-sm"
+                                >Custom Input</span>
+                                <div className="mt-2 ">
+                                    <input
+                                        type="text"
+                                        name="inputname"
+                                        className=" w-[100%] rounded-md py-1.5 px-2 ring-1 ring-inset ring-gray-400 focus:text-gray-800"
+                                    />
+                                </div>
+
+                            </div>
+
                         </div>
                     </ResizablePanel>
                     <ResizableHandle />

@@ -2,6 +2,7 @@
 import React from 'react'
 import './loader.css'
 import { useRouter } from 'next/navigation'
+import { Button } from './ui/button'
 export const Navbar = () => {
     const router = useRouter();
     return (
@@ -21,8 +22,8 @@ export const Navbar = () => {
                     </a>
 
                     <div className='flex gap-2'>
-                        <button onClick={() => router.push('/auth/signup')} className='buttons'>SignUp</button>
-                        <button onClick={() => router.push('/auth/login')} className='buttons'>Login</button>
+                        <Button onClick={() => router.push('/auth/signup')} className='buttons'>SignUp</Button>
+                        <Button onClick={() => router.push('/auth/login')} className='buttons'>Login</Button>
                     </div>
 
                 </div>
