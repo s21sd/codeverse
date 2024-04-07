@@ -3,7 +3,7 @@ import React from 'react'
 import { tags as t } from '@lezer/highlight';
 import { draculaInit } from '@uiw/codemirror-theme-dracula';
 import CodeMirror from '@uiw/react-codemirror';
-import { InitialStateType, updateCurrLanguage } from '../redux/slices/compileSlice'
+import { InitialStateType, updateCodeValue, updateCurrLanguage } from '../redux/slices/compileSlice'
 import { loadLanguage } from '@uiw/codemirror-extensions-langs';
 import { cpp } from '@codemirror/lang-cpp';
 import { java } from '@codemirror/lang-java';
@@ -15,7 +15,7 @@ export const Codeeditor = () => {
     const currLangValue = useSelector((state: RootState) => state.compileSlice.currlanguage)
     const currCodeValue = useSelector((state: RootState) => state.compileSlice.fullCode);
     const onChange = React.useCallback((val: any) => {
-        dispatch(updateCurrLanguage(val))
+        dispatch(updateCodeValue(val))
     }, []);
     return (
         <div>

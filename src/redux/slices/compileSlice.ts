@@ -15,8 +15,11 @@ const compileSlice = createSlice({
         updateCurrLanguage: (state, action: PayloadAction<InitialStateType["currlanguage"]>) => {
             state.currlanguage = action.payload
         },
+        updateCodeValue: (state, action: PayloadAction<string>) => {
+            state.fullCode = action.payload;
+        },
     }
 })
 
 export default compileSlice.reducer;
-export const { updateCurrLanguage } = compileSlice.actions;
+export const { updateCurrLanguage,updateCodeValue } = compileSlice.actions;
