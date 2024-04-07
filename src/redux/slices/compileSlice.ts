@@ -4,7 +4,7 @@ export interface InitialStateType {
     currlanguage: "c" | "cpp" | "java" | "python";
 }
 const initialState: InitialStateType = {
-    fullCode: 'printf("Hello world")',
+    fullCode: "printf(\"Hello world\")",
     currlanguage: "c",
 };
 

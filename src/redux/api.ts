@@ -1,6 +1,24 @@
 "use client"
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { UserInfoType, loginCredentialType, signupCredentialType } from "../../next-env";
+export interface UserInfoType {
+    name: string,
+    email: string,
+    password: string
+}
+export interface loginCredentialType {
+    email: string,
+    password: string
+}
+export interface signupCredentialType {
+    name: string,
+    email: string,
+    password: string
+}
+export interface compilecodeType {
+    code: string,
+    input: string,
+    language: string
+}
 export const api = createApi({
     reducerPath: 'api',
     baseQuery: fetchBaseQuery({
@@ -36,10 +54,19 @@ export const api = createApi({
                 body: body,
                 credentials: 'include'
             })
+        }),
+
+        // for the compile code 
+        compilecode: builder.mutation<compilecodeType, string>({
+            query: (body) => ({
+                url: 'code/compile',
+                method: 'POST',
+                body: body,
+            })
         })
 
     }),
 
 });
 
-export const { useLoginMutation, useSignupMutation } = api
+export const { useLoginMutation, useSignupMutation, useCompilecodeMutation } = api

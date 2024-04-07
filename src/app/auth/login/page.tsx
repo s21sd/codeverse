@@ -6,11 +6,12 @@ import { toast } from 'sonner'
 import { HandleErrors } from '@/lib/Handlerror'
 import { useLoginMutation } from '@/redux/api'
 import { Loader } from 'lucide-react'
+interface formDataType {
+    email: string,
+    password: string
+}
 const page = () => {
-    interface formDataType {
-        email: string,
-        password: string
-    }
+
     const router = useRouter();
     const [loading, setLoading] = useState<boolean>(false);
     const [login] = useLoginMutation();
