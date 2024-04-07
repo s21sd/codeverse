@@ -76,7 +76,7 @@ const page = () => {
                 </div>
 
                 <button onClick={handleSigup} className={`${loading ? `cursor-not-allowed` : <></>} button-submit flex justify-center items-center`}>{loading ? <Loader className="animate-spin mr-1" /> : <></>}Sign up</button>
-                <p className="p">Already have an account? <span className="span" onClick={() => router.push('/auth/login')}>login</span>
+                <p className="p">Already have an account? <span className="span" onClick={() => router.push('/auth/login')}>Login</span>
                 </p>
 
             </form>

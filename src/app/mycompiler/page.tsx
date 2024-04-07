@@ -18,11 +18,7 @@ const page = () => {
                 <div>
                     <HelperHeader />
                 </div>
-                {/* <div className="flex h-[100vh] items-center justify-center p-6"> */}
-                {/* <span className="font-semibold">One</span> */}
                 <Codeeditor />
-
-                {/* </div> */}
             </ResizablePanel>
             {/* <ResizableHandle /> */}
 
