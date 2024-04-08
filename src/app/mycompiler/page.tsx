@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux'
 import { RootState } from '@/redux/store'
 const page = () => {
     const currCodeOutput = useSelector((state: RootState) => state.compileSlice.codeOutput);
-    console.log(currCodeOutput);
+    // console.log(currCodeOutput.output);
     return (
         <ResizablePanelGroup
             direction="horizontal"
@@ -47,15 +47,21 @@ const page = () => {
                     <ResizablePanel defaultSize={75}>
                         <div className="gird m-4">
                             <span className="font-bold text-2xl gap-2">Output:</span>
-                            <div className='bg-gray-200 rounded-full p-4 mt-4'>
-                                <p>{currCodeOutput.output}</p>
-                                {/* <p>Hello Worlds</p> */}
-                            </div>
+
+                            {
+                                currCodeOutput.output?.length > 0 ?
+                                    <div className='bg-gray-200 rounded-full p-4 mt-4'>
+
+                                        <p>{currCodeOutput.output}</p>
+                                    </div>
+                                    : <></>
+                            }
+                            {/* <p>Hello Worlds</p> */}
                         </div>
                     </ResizablePanel>
                 </ResizablePanelGroup>
-            </ResizablePanel>
-        </ResizablePanelGroup>
+            </ResizablePanel >
+        </ResizablePanelGroup >
     )
 }
 

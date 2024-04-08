@@ -1,5 +1,4 @@
-"use client"
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react';
 import {
     Select,
     SelectContent,
@@ -7,60 +6,69 @@ import {
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from "@/components/ui/select"
-import { FaRegSave } from "react-icons/fa";
-import { FaShareAlt } from "react-icons/fa";
+} from "@/components/ui/select";
+import { FaRegSave, FaShareAlt, FaPlay } from "react-icons/fa";
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
-import { InitialStateType, updateCodeOutput, updateCurrLanguage } from '../redux/slices/compileSlice'
-import { FaPlay } from "react-icons/fa";
+import { InitialStateType, updateCodeOutput, updateCurrLanguage, updateCodeValue } from '../redux/slices/compileSlice';
 import { HandleErrors } from '@/lib/Handlerror';
 import { useCompilecodeMutation } from '@/redux/api';
 import { Button } from './ui/button';
-interface codeDataType {
-    code: string,
-    input: string,
-    language: string
+
+interface CodeDataType {
+    code: string;
+    input: string;
+    language: string;
 }
 
 const HelperHeader = () => {
     const [compilecode] = useCompilecodeMutation();
-    const dispathch = useDispatch();
-    const currLangValue = useSelector((state: RootState) => state.compileSlice.currlanguage)
+    const dispatch = useDispatch();
+    const currLangValue = useSelector((state: RootState) => state.compileSlice.currlanguage);
     const currCodeValue = useSelector((state: RootState) => state.compileSlice.fullCode);
+    console.log(currCodeValue);
+    console.log(currLangValue);
+
     // Setting the value for the compiles 
-    const [codeData, setCodeData] = useState<codeDataType>({
+    const [codeData, setCodeData] = useState<CodeDataType>({
         code: currCodeValue,
         input: '',
         language: currLangValue
-    })
-    // console.log(codeData);
-    const HandlecompileCode = async () => {
+    });
+
+    useEffect(() => {
+        setCodeData(prevState => ({
+            ...prevState,
+            code: currCodeValue,
+            language: currLangValue
+        }));
+    }, [currCodeValue, currLangValue]);
+
+    const handleCompileCode = async () => {
         try {
             const res = await compilecode(codeData).unwrap();
-            dispathch(updateCodeOutput(res))
-            // console.log(currCodeOutput);
+            dispatch(updateCodeOutput(res));
         } catch (error) {
             console.log(error);
-            HandleErrors(error)
+            HandleErrors(error);
         }
     }
+
     return (
         <div className='flex justify-between items-center m-1'>
             <div className='flex justify-center items-center gap-4 cursor-pointer'>
                 <FaRegSave size={26} />
                 <FaShareAlt size={26} />
-                <Button onClick={HandlecompileCode}>
+                <Button onClick={handleCompileCode}>
                     Run
                 </Button>
-
             </div>
 
             <div className=' flex gap-2 justify-center items-center'>
                 <p>
                     Current Language:
                 </p>
-                <Select defaultValue={currLangValue} onValueChange={(value) => dispathch(updateCurrLanguage(value as InitialStateType["currlanguage"]))}>
+                <Select defaultValue={currLangValue} onValueChange={(value) => dispatch(updateCurrLanguage(value as InitialStateType["currlanguage"]))}>
                     <SelectTrigger className="w-[120px] outline focus:ring-0">
                         <SelectValue placeholder="Language" />
                     </SelectTrigger>
@@ -70,14 +78,12 @@ const HelperHeader = () => {
                             <SelectItem value="cpp">C++</SelectItem>
                             <SelectItem value="java">Java</SelectItem>
                             <SelectItem value="python">Python</SelectItem>
-
                         </SelectGroup>
                     </SelectContent>
                 </Select>
             </div>
         </div>
-
-    )
+    );
 }
 
-export default HelperHeader
+export default HelperHeader;
