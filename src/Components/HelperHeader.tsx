@@ -12,7 +12,7 @@ import { FaRegSave } from "react-icons/fa";
 import { FaShareAlt } from "react-icons/fa";
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
-import { InitialStateType, updateCurrLanguage } from '../redux/slices/compileSlice'
+import { InitialStateType, updateCodeOutput, updateCurrLanguage } from '../redux/slices/compileSlice'
 import { FaPlay } from "react-icons/fa";
 import { HandleErrors } from '@/lib/Handlerror';
 import { useCompilecodeMutation } from '@/redux/api';
@@ -38,7 +38,8 @@ const HelperHeader = () => {
     const HandlecompileCode = async () => {
         try {
             const res = await compilecode(codeData).unwrap();
-            console.log(res);
+            dispathch(updateCodeOutput(res))
+            // console.log(currCodeOutput);
         } catch (error) {
             console.log(error);
             HandleErrors(error)

@@ -7,8 +7,11 @@ import {
 } from "@/components/ui/resizable"
 import { Codeeditor } from '@/components/Codeeditor'
 import HelperHeader from '@/components/HelperHeader'
+import { useSelector } from 'react-redux'
+import { RootState } from '@/redux/store'
 const page = () => {
-
+    const currCodeOutput = useSelector((state: RootState) => state.compileSlice.codeOutput);
+    console.log(currCodeOutput);
     return (
         <ResizablePanelGroup
             direction="horizontal"
@@ -26,25 +29,28 @@ const page = () => {
                 <ResizablePanelGroup direction="vertical">
                     <ResizablePanel defaultSize={25}>
                         <div className="flex h-full p-6 ">
-                            <div className='w-[100%]'>
-                                <span className=" text-gray-800 font-semibold text-sm"
-                                >Custom Input</span>
-                                <div className="mt-2 ">
+                            <div className='w-[100%] mt-2'>
+                                <span className="font-bold text-2xl gap-2"
+                                >Custom Input:</span>
+                                <div className='mt-4'>
                                     <input
                                         type="text"
                                         name="inputname"
-                                        className=" w-[100%] rounded-md py-1.5 px-2 ring-1 ring-inset ring-gray-400 focus:text-gray-800"
+                                        className=" w-[100%] rounded-full p-2 bg-gray-200 focus:text-gray-400"
                                     />
                                 </div>
-
                             </div>
 
                         </div>
                     </ResizablePanel>
                     <ResizableHandle />
                     <ResizablePanel defaultSize={75}>
-                        <div className="flex h-full items-center justify-center p-6">
-                            <span className="font-semibold">Three</span>
+                        <div className="gird m-4">
+                            <span className="font-bold text-2xl gap-2">Output:</span>
+                            <div className='bg-gray-200 rounded-full p-4 mt-4'>
+                                <p>{currCodeOutput.output}</p>
+                                {/* <p>Hello Worlds</p> */}
+                            </div>
                         </div>
                     </ResizablePanel>
                 </ResizablePanelGroup>

@@ -2,10 +2,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 export interface InitialStateType {
     fullCode: string;
     currlanguage: "c" | "cpp" | "java" | "python";
+    codeOutput: string
 }
 const initialState: InitialStateType = {
-    fullCode: "print(Hello world)",
+    fullCode: "print(\"Hello world\")",
     currlanguage: "python",
+    codeOutput: ""
 };
 
 const compileSlice = createSlice({
@@ -18,8 +20,11 @@ const compileSlice = createSlice({
         updateCodeValue: (state, action: PayloadAction<string>) => {
             state.fullCode = action.payload;
         },
+        updateCodeOutput: (state, action: PayloadAction<string>) => {
+            state.codeOutput = action.payload
+        }
     }
 })
 
 export default compileSlice.reducer;
-export const { updateCurrLanguage,updateCodeValue } = compileSlice.actions;
+export const { updateCurrLanguage, updateCodeValue, updateCodeOutput } = compileSlice.actions;
