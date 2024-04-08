@@ -16,6 +16,7 @@ import { InitialStateType, updateCurrLanguage } from '../redux/slices/compileSli
 import { FaPlay } from "react-icons/fa";
 import { HandleErrors } from '@/lib/Handlerror';
 import { useCompilecodeMutation } from '@/redux/api';
+import { Button } from './ui/button';
 interface codeDataType {
     code: string,
     input: string,
@@ -48,9 +49,9 @@ const HelperHeader = () => {
             <div className='flex justify-center items-center gap-4 cursor-pointer'>
                 <FaRegSave size={26} />
                 <FaShareAlt size={26} />
-                <button onClick={HandlecompileCode}>
-                    <FaPlay size={26} />
-                </button>
+                <Button onClick={HandlecompileCode}>
+                    Run
+                </Button>
 
             </div>
 

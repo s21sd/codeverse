@@ -4,8 +4,8 @@ export interface InitialStateType {
     currlanguage: "c" | "cpp" | "java" | "python";
 }
 const initialState: InitialStateType = {
-    fullCode: "printf(\"Hello world\")",
-    currlanguage: "c",
+    fullCode: "print(Hello world)",
+    currlanguage: "python",
 };
 
 const compileSlice = createSlice({
