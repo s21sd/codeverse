@@ -20,7 +20,7 @@ export const Codeeditor = () => {
     return (
         <div>
             <CodeMirror
-                value={currCodeValue}
+                value={currCodeValue[currLangValue]}
                 height="100vh"
                 width='50vw'
                 extensions={[loadLanguage(currLangValue)!]}

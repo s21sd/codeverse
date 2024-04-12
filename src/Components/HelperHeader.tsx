@@ -26,12 +26,12 @@ const HelperHeader = () => {
     const dispatch = useDispatch();
     const currLangValue = useSelector((state: RootState) => state.compileSlice.currlanguage);
     const currCodeValue = useSelector((state: RootState) => state.compileSlice.fullCode);
-    console.log(currCodeValue);
-    console.log(currLangValue);
+    console.log(currCodeValue[currLangValue])
+
 
     // Setting the value for the compiles 
     const [codeData, setCodeData] = useState<CodeDataType>({
-        code: currCodeValue,
+        code: currCodeValue[currLangValue],
         input: '',
         language: currLangValue
     });
@@ -39,7 +39,7 @@ const HelperHeader = () => {
     useEffect(() => {
         setCodeData(prevState => ({
             ...prevState,
-            code: currCodeValue,
+            code: currCodeValue[currLangValue],
             language: currLangValue
         }));
     }, [currCodeValue, currLangValue]);
