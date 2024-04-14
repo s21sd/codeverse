@@ -3,11 +3,12 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export interface UserInfoType {
     name: string,
     email: string,
-    password: string
+    password: string,
+    token:string
 }
 export interface loginCredentialType {
     email: string,
-    password: string
+    password: string,
 }
 export interface signupCredentialType {
     name: string,
@@ -25,6 +26,7 @@ export const api = createApi({
         baseUrl: 'http://localhost:5000',
         prepareHeaders: (headers) => {
             const token = localStorage.getItem('token');
+            console.log(token)
             if (token) {
                 headers.set('Authorization', `Bearer ${token}`);
             } else {

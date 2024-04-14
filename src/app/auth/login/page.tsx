@@ -30,6 +30,10 @@ const page = () => {
         setLoading(true);
         try {
             const res = await login(formData).unwrap();
+            if (res.token) {
+                localStorage.setItem('token', res.token);
+            }
+            console.log(res)
             toast.success("Login Successfull");
             setTimeout(() => {
                 setLoading(false)
