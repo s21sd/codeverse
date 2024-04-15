@@ -1,10 +1,11 @@
 "use client"
-import React from 'react'
+import React, { useState } from 'react'
 import './loader.css'
 import { useRouter } from 'next/navigation'
 import { Button } from './ui/button'
 export const Navbar = () => {
     const router = useRouter();
+    const [isAuth, setIsAuth] = useState<boolean>(false);
     return (
         <div className='bg-[#93efde] p-2 rounded-b-2xl '>
             <header className="text-gray-600 body-font">
@@ -20,11 +21,21 @@ export const Navbar = () => {
                         </div>
                         <span onClick={() => router.push('/')} className="ml-5 text-2xl cursor-pointer font-bold">CodeVerse</span>
                     </a>
+                    {
+                        isAuth ? (
+                            <div className='flex gap-2'>
+                                <Button onClick={() => router.push('/auth/signup')} className='buttons'>SignUp</Button>
+                                <Button onClick={() => router.push('/auth/login')} className='buttons'>Login</Button>
+                            </div>
+                        ) :
+                            (
+                                <div>
+                                    <Button variant="destructive" className='buttons'>Logout</Button>
 
-                    <div className='flex gap-2'>
-                        <Button onClick={() => router.push('/auth/signup')} className='buttons'>SignUp</Button>
-                        <Button onClick={() => router.push('/auth/login')} className='buttons'>Login</Button>
-                    </div>
+                                </div>
+                            )
+
+                    }
 
                 </div>
             </header>
