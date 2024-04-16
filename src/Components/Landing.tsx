@@ -3,9 +3,15 @@ import React from 'react'
 import { useRouter } from 'next/navigation'
 import Lottie from "lottie-react";
 import Animation from "../../public/Animation - 1712328886093.json";
+import { RootState } from '@/redux/store';
+import { useSelector } from 'react-redux';
 
 const Landing = () => {
     const router = useRouter();
+    const isLoggedIn = useSelector((state: RootState) => state.appSlice.isAuth);
+    const handleGetStarted = () => {
+        isLoggedIn ? router.push('/mycompiler') : router.push('/auth/login')
+    }
     return (
         <div>
             <div className="text-gray-600 body-font overflow-hidden">
@@ -24,7 +30,7 @@ const Landing = () => {
                                 Compile C++, C, Java, and Python seamlessly.
                                 Your one-stop destination for versatile coding."</p>
                             <div className='mt-4 w-fit'>
-                                <button className='bg-black w-[200px] h-[50px] font-medium text-white text-xl rounded-full ' onClick={() => router.push('/mycompiler')}>Get Started</button>
+                                <button className='bg-black w-[200px] h-[50px] font-medium text-white text-xl rounded-full ' onClick={handleGetStarted}>Get Started</button>
                             </div>
                         </div>
 
