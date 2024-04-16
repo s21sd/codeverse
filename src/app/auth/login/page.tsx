@@ -6,6 +6,8 @@ import { toast } from 'sonner'
 import { HandleErrors } from '@/lib/Handlerror'
 import { useLoginMutation } from '@/redux/api'
 import { Loader } from 'lucide-react'
+import { useDispatch } from 'react-redux'
+import { logIn } from '@/redux/slices/appSlice'
 interface formDataType {
     email: string,
     password: string
@@ -13,6 +15,7 @@ interface formDataType {
 const page = () => {
 
     const router = useRouter();
+    const dispatch = useDispatch();
     const [loading, setLoading] = useState<boolean>(false);
     const [login] = useLoginMutation();
     const [formData, setFormData] = useState<formDataType>({
@@ -35,6 +38,7 @@ const page = () => {
             }
             console.log(res)
             toast.success("Login Successfull");
+            dispatch(logIn(true))
             setTimeout(() => {
                 setLoading(false)
                 router.push('/mycompiler');

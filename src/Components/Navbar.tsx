@@ -1,11 +1,30 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './loader.css'
 import { useRouter } from 'next/navigation'
 import { Button } from './ui/button'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '@/redux/store'
+import { logIn, logOut } from '@/redux/slices/appSlice'
 export const Navbar = () => {
     const router = useRouter();
-    const [isAuth, setIsAuth] = useState<boolean>(false);
+    const dispatch = useDispatch();
+    const isLoggedIn = useSelector((state: RootState) => state.appSlice.isAuth);
+    console.log(isLoggedIn)
+
+    useEffect(() => {
+        const storedAuth = localStorage.getItem('token');
+        if (storedAuth) {
+            dispatch(logIn(true));
+            router.push('/mycompiler');
+        }
+    }, []);
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        dispatch(logOut());
+        router.push('/')
+
+    };
     return (
         <div className='bg-[#93efde] p-2 rounded-b-2xl '>
             <header className="text-gray-600 body-font">
@@ -22,7 +41,7 @@ export const Navbar = () => {
                         <span onClick={() => router.push('/')} className="ml-5 text-2xl cursor-pointer font-bold">CodeVerse</span>
                     </a>
                     {
-                        isAuth ? (
+                        !isLoggedIn ? (
                             <div className='flex gap-2'>
                                 <Button onClick={() => router.push('/auth/signup')} className='buttons'>SignUp</Button>
                                 <Button onClick={() => router.push('/auth/login')} className='buttons'>Login</Button>
@@ -30,7 +49,7 @@ export const Navbar = () => {
                         ) :
                             (
                                 <div>
-                                    <Button variant="destructive" className='buttons'>Logout</Button>
+                                    <Button onClick={handleLogout} variant="destructive" className='buttons'>Logout</Button>
 
                                 </div>
                             )

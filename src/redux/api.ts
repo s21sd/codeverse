@@ -4,7 +4,7 @@ export interface UserInfoType {
     name: string,
     email: string,
     password: string,
-    token:string
+    token: string
 }
 export interface loginCredentialType {
     email: string,
@@ -57,7 +57,6 @@ export const api = createApi({
                 credentials: 'include'
             })
         }),
-
         // for the compile code 
         compilecode: builder.mutation<compilecodeType, string>({
             query: (body) => ({
@@ -66,6 +65,8 @@ export const api = createApi({
                 body: body,
             })
         })
+
+
 
     }),
 

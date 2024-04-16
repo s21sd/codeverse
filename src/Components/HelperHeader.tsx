@@ -26,9 +26,7 @@ const HelperHeader = () => {
     const dispatch = useDispatch();
     const currLangValue = useSelector((state: RootState) => state.compileSlice.currlanguage);
     const currCodeValue = useSelector((state: RootState) => state.compileSlice.fullCode);
-    console.log(currCodeValue[currLangValue])
-
-
+  
     // Setting the value for the compiles 
     const [codeData, setCodeData] = useState<CodeDataType>({
         code: currCodeValue[currLangValue],
