@@ -14,6 +14,7 @@ const Landing = () => {
     }
     return (
         <div>
+        
             <div className="text-gray-600 body-font overflow-hidden">
                 <div className=" mx-auto">
                     <div className="lg:w-4/5 mx-auto flex flex-wrap justify-between items-center">
