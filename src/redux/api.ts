@@ -1,5 +1,6 @@
 "use client"
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { InitialStateType } from "./slices/compileSlice"
 export interface UserInfoType {
     name: string,
     email: string,
@@ -64,7 +65,23 @@ export const api = createApi({
                 method: 'POST',
                 body: body,
             })
-        })
+        }),
+
+
+        // For  the saving the code 
+        savecode: builder.mutation<{ url: string, status: string }, { fullCode: InitialStateType["fullCode"], language: InitialStateType["currlanguage"] }>({
+            query: (fullcode) => {
+                console.log(fullcode)
+                return {
+                    url: "/code/savecode",
+                    method: 'POST',
+                    body: {
+                        "code": fullcode,
+                    }
+                };
+
+            }
+        }),
 
 
 
@@ -72,4 +89,4 @@ export const api = createApi({
 
 });
 
-export const { useLoginMutation, useSignupMutation, useCompilecodeMutation } = api
+export const { useLoginMutation, useSignupMutation, useCompilecodeMutation, useSavecodeMutation } = api

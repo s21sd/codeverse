@@ -12,8 +12,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 import { InitialStateType, updateCodeOutput, updateCurrLanguage, updateCodeValue } from '../redux/slices/compileSlice';
 import { HandleErrors } from '@/lib/Handlerror';
-import { useCompilecodeMutation } from '@/redux/api';
+import { useCompilecodeMutation, useSavecodeMutation } from '@/redux/api';
 import { Button } from './ui/button';
+import { toast } from 'sonner';
 
 interface CodeDataType {
     code: string;
@@ -23,10 +24,11 @@ interface CodeDataType {
 
 const HelperHeader = () => {
     const [compilecode] = useCompilecodeMutation();
+    const [savecode] = useSavecodeMutation();
     const dispatch = useDispatch();
     const currLangValue = useSelector((state: RootState) => state.compileSlice.currlanguage);
     const currCodeValue = useSelector((state: RootState) => state.compileSlice.fullCode);
-  
+
     // Setting the value for the compiles 
     const [codeData, setCodeData] = useState<CodeDataType>({
         code: currCodeValue[currLangValue],
@@ -42,6 +44,7 @@ const HelperHeader = () => {
         }));
     }, [currCodeValue, currLangValue]);
 
+    // For Compiling  the code
     const handleCompileCode = async () => {
         try {
             const res = await compilecode(codeData).unwrap();
@@ -51,11 +54,24 @@ const HelperHeader = () => {
             HandleErrors(error);
         }
     }
+    // For saving the codes
+    const saveCode = async () => {
+        try {
+            const res = await savecode(codeData).unwrap();
+            console.log(res)
+            toast("Code Saved Successfully!")
+        } catch (error) {
+            console.log(error);
+            HandleErrors(error)
+
+        }
+
+    }
 
     return (
         <div className='flex justify-between items-center m-1'>
             <div className='flex justify-center items-center gap-4 cursor-pointer'>
-                <FaRegSave size={26} />
+                <FaRegSave onClick={saveCode} size={26} />
                 <FaShareAlt size={26} />
                 <Button onClick={handleCompileCode}>
                     Run

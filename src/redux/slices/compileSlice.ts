@@ -25,7 +25,7 @@ const initialState: InitialStateType = {
 };
 
 
-const compileSlice = createSlice({
+const compileSlice: any = createSlice({
     name: 'compilerSlice',
     initialState,
     reducers: {
