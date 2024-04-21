@@ -25,6 +25,10 @@ export const Navbar = () => {
         router.push('/')
 
     };
+    // For Feteching all the codes
+    const getAllCodes = () => {
+        console.log("ALL codes")
+    }
     return (
         <div className='bg-[#93efde] p-2 rounded-b-2xl '>
             <header className="text-gray-600 body-font">
@@ -48,7 +52,9 @@ export const Navbar = () => {
                             </div>
                         ) :
                             (
-                                <div>
+                                <div className='flex gap-2'>
+                                    <Button onClick={getAllCodes} variant="default" className='buttons'>All Codes</Button>
+                                    <Button onClick={getAllCodes} variant="default" className='buttons'>My Codes</Button>
                                     <Button onClick={handleLogout} variant="destructive" className='buttons'>Logout</Button>
 
                                 </div>
