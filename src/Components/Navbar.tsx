@@ -25,9 +25,18 @@ export const Navbar = () => {
         router.push('/')
 
     };
+    const getCompiler = () => {
+        router.push('/mycompiler')
+    }
     // For Feteching all the codes
     const getAllCodes = () => {
-        console.log("ALL codes")
+        router.push('/allcodes');
+
+    }
+    const getMyCodes = () => {
+        console.log("MY CODES")
+        router.push('/mycodes');
+
     }
     return (
         <div className='bg-[#93efde] p-2 rounded-b-2xl '>
@@ -53,8 +62,9 @@ export const Navbar = () => {
                         ) :
                             (
                                 <div className='flex gap-2'>
+                                    <Button onClick={getCompiler} variant="default" className='buttons'>Compiler</Button>
                                     <Button onClick={getAllCodes} variant="default" className='buttons'>All Codes</Button>
-                                    <Button onClick={getAllCodes} variant="default" className='buttons'>My Codes</Button>
+                                    <Button onClick={getMyCodes} variant="default" className='buttons'>My Codes</Button>
                                     <Button onClick={handleLogout} variant="destructive" className='buttons'>Logout</Button>
 
                                 </div>

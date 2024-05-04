@@ -83,10 +83,26 @@ export const api = createApi({
             }
         }),
 
+        //  for getting all the codes
+        getAllCodes: builder.query<
+            Array<{ _id: string; title: string; ownerName: string }>,
+            void
+        >({
+            query: () => ({
+                url: "/code/getallcode",
+                cache: "no-store",
+            }),
+
+        }),
+        // Only For My specific saved code
+        getMyCodes: builder.mutation<{ fullCode: InitialStateType["fullCode"] }[], void>({
+            query: () => "/code/mycodes",
+        }),
+
 
 
     }),
 
 });
 
-export const { useLoginMutation, useSignupMutation, useCompilecodeMutation, useSavecodeMutation } = api
+export const { useLoginMutation, useSignupMutation, useCompilecodeMutation, useSavecodeMutation, useGetAllCodesQuery, useGetMyCodesMutation } = api
